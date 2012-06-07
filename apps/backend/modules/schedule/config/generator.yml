@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Schedule
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          schedule
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        title:   Schedule list
+        display: [date_start, date_end, Channel, is_important, is_geoblocked, Program, title, description]
+        max_per_page: 250
+      filter: 
+        display: [channel_id]
+      form: 
+        display: [channel_id, program_id, date_start, date_end, type, title, description, description_short, image, image_source, tv_rating, tv_category, is_important, is_live, is_geoblocked, url]
+      edit:    ~
+      new:     ~

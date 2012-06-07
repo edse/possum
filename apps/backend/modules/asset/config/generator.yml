@@ -1,0 +1,39 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Asset
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          asset
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields: ~
+      list:
+        title:   Asset list
+        sort: [id, desc]
+        max_per_page: 30
+        display: [=id, AssetType, Site, thumbnail, =title, created_at]
+      filter:
+        display: [asset_type_id, site_id, title, description, is_active]
+      form:
+        class: BackendAssetForm
+        display: 
+          Description:    [asset_type_id, title, description, is_active, user_id]
+          Site:           [site_id, sections_list]
+          Categorization: [categories_list, category_id, _tags]
+          Availability:   [date_start, date_end]
+          Asset:          [_asset]
+      edit:    
+        display: 
+          Description:    [asset_type_id, title, description, slug, is_active, user_id]
+          Site:           [site_id, sections_list]
+          Categorization: [categories_list, category_id, _tags]
+          Availability:   [date_start, date_end]
+          Asset:          [_asset]
+      new:     ~

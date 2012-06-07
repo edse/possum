@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           SonyCategory
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              SonyCategory
+    plural:                SonyCategories
+    route_prefix:          sony
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        max_per_page: 120
+      filter:  ~
+      form:    
+        display: 
+          Categorization: [sony_category_id]
+          Description:    [slug, title, description, image]
+          Availability:   [is_active]
+      edit:    ~
+      new:     ~

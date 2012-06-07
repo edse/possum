@@ -1,0 +1,44 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Site
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          site
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Site list
+        display: [=title, url, youtube_channel, created_at, updated_at]
+        object_actions:
+          sections:     ~
+          _edit:        ~
+          _delete:      { credentials: [admin] }
+        batch_actions: {}
+      filter:
+        display: [title, description]
+      form:
+        display: 
+          Description:    [type, title, description, url, contact_email, slug, is_active]
+          Images:         [image_icon, image_thumb]
+          Youtube:        [youtube_channel, youtube_genre]
+          Twitter:        [twitter_account, twitter_url]
+          Facebook:       [facebook_url]
+          Users:          [users_list]
+      edit: 
+        display: 
+          Description:    [type, title, description, url, contact_email, slug, is_active]
+          Images:         [image_icon, image_thumb]
+          Youtube:        [youtube_channel, youtube_genre]
+          Twitter:        [twitter_account, twitter_url]
+          Facebook:       [facebook_url]
+          Users:          [users_list]
+        #display: [type, title, description, url, image_icon, image_thumb, youtube_channel, youtube_genre, twitter_account, twitter_url, facebook_url, is_active, users_list, slug]
+      new:     ~

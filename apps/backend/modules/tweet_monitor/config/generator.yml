@@ -1,0 +1,30 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           TweetMonitor
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          tweet_monitor
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Tweet Monitor List
+        display: [=query]
+        object_actions:
+          sync:         ~
+          tweets:       ~
+          _edit:        ~
+          _delete:      ~
+        batch_actions: {}
+      filter:
+        display: [query]
+      form:    ~
+      edit:    ~
+      new:     ~

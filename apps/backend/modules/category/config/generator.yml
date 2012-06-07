@@ -1,0 +1,24 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Category
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          category
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        title:   Category list
+        display: [Organization, =title, description, is_active, created_at, updated_at]
+      filter:
+        display: [organization_id, title, description, is_active]
+      form:    ~
+      edit:    ~
+      new:     ~

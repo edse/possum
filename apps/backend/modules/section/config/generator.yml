@@ -1,0 +1,34 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Section
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          section
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Section list
+        display: [=id, is_active, is_homepage, Site, parent_section_id, =title, slug, created_at, updated_at]
+        object_actions:
+          #assets:       ~
+          blocks:       ~
+          _edit:        ~
+          _delete:      ~
+        max_per_page: 120
+      filter: 
+        class: false
+        #display: [parent_section_id, site_id, title, is_active]
+      form: 
+        display: [parent_section_id, site_id, title, description, url, is_active, is_visible, slug, keywords, contact_email]
+      edit:
+        display: [parent_section_id, site_id, title, description, url, is_homepage, is_active, is_visible, is_editorial, slug, keywords, contact_email, display_order]
+      new:     ~
+

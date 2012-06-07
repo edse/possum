@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Todo
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          todo
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Todo list
+        display: [User, Asset, =status, =title, created_at, updated_at]
+      filter:
+        display: [title, status]
+      form:
+        display: [parent_id, user_id, site_id, asset_id, status, title, description]
+      edit:    ~
+      new:     
+        display: [user_id, site_id, status, title, description]

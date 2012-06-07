@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Asset
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          asset_section_assets_add
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:            ""
+        display:          [AssetType, Site, title, created_at]
+        actions:          {}
+        object_actions:   {}
+        batch_actions:
+          save:           ~
+      filter:
+        display:          [asset_type_id, site_id]
+      form:    ~
+      edit:    ~
+      new:     ~

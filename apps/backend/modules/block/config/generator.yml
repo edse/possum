@@ -1,0 +1,32 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Block
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          block
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Block list
+        display: [=id, Section, slug, title, description, is_random, is_automatic, created_at, updated_at]
+        object_actions:
+          displays:       ~
+          _edit:        ~
+          _delete:      ~
+        max_per_page: 90
+      filter:
+        class: false
+        #display: [section_id, title, description, created_at, updated_at]
+      form:
+        display: [section_id, title, description, items, items_order, query, is_random, is_automatic, slug]
+      edit:
+        display: [section_id, title, description, items, items_order, query, is_random, is_automatic, slug]
+      new:     ~

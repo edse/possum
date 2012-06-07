@@ -1,0 +1,45 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           VideoDropbox
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          video_dropbox
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Dropbox list
+        display: [=id, =AssetVideo, =AssetVideoGallery, folder, action, status, message, updated_at, created_at]
+        sort: [id, desc]
+        batch_actions:
+          process:		{ label: "Process Items" }
+          check:     	{ label: "Check Items" }
+          _delete:    ~
+        object_actions:
+          process:		{ label: "Process" }
+          check:     	{ label: "Check" }
+          #_edit:      ~
+          #_delete:    ~
+        actions:
+          _new:       ~
+        max_per_page: 25
+      filter:
+        display: [video, folder, action, status, message]
+        fields:
+          video:
+            label: vídeo ou playlist
+            help: filtrar por título do vídeo ou playlist
+          folder:
+          action:
+          status:
+          message:
+      form:    ~
+      edit:    ~
+      new:     ~

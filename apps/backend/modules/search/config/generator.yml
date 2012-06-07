@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Asset
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          asset_search
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        title:   Search for assets
+        display: [=id, AssetType, is_active, Site, Category, =title, description, created_at, updated_at, =slug]
+        #max_per_page: 25
+      filter: 
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~
+      

@@ -1,0 +1,24 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           AssetType
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          asset_type
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Assettype List
+        display: [title, model, is_active, is_visible, upload_input, updated_at]
+      filter:
+        display: [title, description, model, is_active, is_visible, upload_input]
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -1,0 +1,30 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Log
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          log
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions:
+        _edit: { credentials: [admin] }
+        _delete: { credentials: [admin] }
+      fields:  ~
+      list:    
+        title:   Log List
+        display: [=id, User, Site, action, class, asset, asset_title, created_at]
+        sort: [id, desc]
+        max_per_page: 30
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+
+      filter:
+        display: [user_id, site_id, action, class]

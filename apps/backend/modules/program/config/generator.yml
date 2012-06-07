@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Program
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          program
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        title:   Program list
+        display: [=title, description, is_active, created_at, updated_at]
+      filter:
+        display: [title, description, channels_list, is_active, is_in_menu]
+      form:
+        display: 
+          Description:    [type, title, description, long_description, schedule, is_active, is_in_menu, is_a_course, tv_rating, tv_category]
+          Images:         [image_icon, image_thumb, image_live]
+          Channels:       [channels_list, channel_id]
+          Site:           [site_id]
+      edit:    ~
+      new:     ~

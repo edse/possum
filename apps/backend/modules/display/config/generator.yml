@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Display
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          display
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        video_offset: { label: "Start at:" help: Entre com o offset do vídeo no formato "mm:ss" }
+      list:
+        title:   Display list
+        display: [=id, is_active, Block, Asset, =title, description, image]
+        max_per_page: 200
+        object_actions:
+          activate: ~
+          _edit:    ~
+          _delete:  ~
+      filter:
+        class: false
+        #display: [block_id, title, description, created_at, updated_at, is_active]
+      form:
+        display: [block_id, asset_id, type, title, description, headline, file, label, url, target, date_start, date_end, is_active, image, html, video_offset]
+      edit:
+        display: [block_id, asset_id, type, title, description, headline, file, label, url, target, date_start, date_end, is_active, image, html, video_offset, display_order]
+      #new:     ~

@@ -1,0 +1,15 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+#all:
+
+all:
+  mediaextensions:
+    video: [ogg,mp4,flv,wmv,mpg,avi,m4v,mov]
+    audio: [mp3,wma,wav,aac]
+    image: [jpg,gif,png]
+  mimetypes:
+    audio: ["audio/x-wav","audio/wav","audio/x-pn-realaudio","audio/x-pn-realaudio","audio/x-mpegurl","audio/x-aiff","audio/mpeg","audio/mid","audio/basic","audio/x-hx-aac-adts"]
+  sfAntiBruteForcePlugin:
+    threshold:        5 # 20 failed attempts per day

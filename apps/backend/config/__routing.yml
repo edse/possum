@@ -1,0 +1,411 @@
+sony_asset_sony_assets:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SonyAsset
+    module:               sony_assets
+    prefix_path:          /sony_assets
+    column:               id
+    with_wildcard_routes: true
+
+sony_asset:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SonyAsset
+    module:               sony_category_assets_add
+    prefix_path:          /sony_category_assets_add
+    column:               id
+    with_wildcard_routes: true
+
+sony_category_asset:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SonyCategoryAsset
+    module:               sony_category_assets
+    prefix_path:          /sony_category_assets
+    column:               id
+    with_wildcard_routes: true
+
+sony_category_sony:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SonyCategory
+    module:               sony
+    prefix_path:          /sony
+    column:               id
+    with_wildcard_routes: true
+
+sony_category:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SonyCategory
+    module:               sony_category
+    prefix_path:          /sony_category
+    column:               id
+    with_wildcard_routes: true
+
+trebuchet_category_trebuchet:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrebuchetCategory
+    module:               trebuchet
+    prefix_path:          /trebuchet
+    column:               id
+    with_wildcard_routes: true
+
+trebuchet_asset_trebuchet_category_assets:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrebuchetAsset
+    module:               trebuchet_category_assets
+    prefix_path:          /trebuchet_category_assets
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+trebuchet_category_assets_add:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrebuchetAsset
+    module:               trebuchet_category_assets_add
+    prefix_path:          /trebuchet_category_assets_add
+    column:               id
+    with_wildcard_routes: true
+
+trebuchet_category_assets:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrebuchetAsset
+    module:               trebuchet_category_assets
+    prefix_path:          /trebuchet_category_assets
+    column:               id
+    with_wildcard_routes: true
+
+trebuchet_asset:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrebuchetAsset
+    module:               trebuchet_asset
+    prefix_path:          /trebuchet_asset
+    column:               id
+    with_wildcard_routes: true
+
+trebuchet_category:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrebuchetCategory
+    module:               trebuchet_category
+    prefix_path:          /trebuchet_category
+    column:               id
+    with_wildcard_routes: true
+
+asset_answer:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AssetAnswer
+    module:               asset_answer
+    prefix_path:          /asset_answer
+    column:               id
+    with_wildcard_routes: true
+
+tweet_monitor:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TweetMonitor
+    module:               tweet_monitor
+    prefix_path:          /tweet_monitor
+    column:               id
+    with_wildcard_routes: true
+
+monitor_tweets1:
+  url:     /tweet/FromMonitor/:id
+  class:   sfDoctrineRoute
+  options: { model: TweetMonitor, type: object }
+  param:   { module: tweet, action: ListTweets }
+
+monitor_tweets2:
+  url:     /tweet/FromMonitor/:id/
+  class:   sfDoctrineRoute
+  options: { model: TweetMonitor, type: object }
+  param:   { module: tweet, action: ListTweets }
+
+tweet:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Tweet
+    module:               tweet
+    prefix_path:          /tweet
+    column:               id
+    with_wildcard_routes: true
+
+log:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Log
+    module:               log
+    prefix_path:          /log
+    column:               id
+    with_wildcard_routes: true
+
+asset_search:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Asset
+    module:               search
+    prefix_path:          /search
+    column:               id
+    with_wildcard_routes: true
+
+asset_question:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AssetQuestion
+    module:               asset_question
+    prefix_path:          /asset_question
+    column:               id
+    with_wildcard_routes: true
+
+site_sections:
+  url:     /site/:id/ListSections/
+  class:   sfDoctrineRoute
+  options: { model: Site, type: object }
+  param:   { module: site, action: ListSections }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+block_displays:
+  url:     /block/:id/ListDisplays/
+  class:   sfDoctrineRoute
+  options: { model: Block, type: object }
+  param:   { module: block, action: ListDisplays }
+
+asset_section_assets_add:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Asset
+    module:               section_assets_add
+    prefix_path:          /section_assets_add
+    column:               id
+    with_wildcard_routes: true
+
+asset_section_assets:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Asset
+    module:               section_assets
+    prefix_path:          /section_assets
+    column:               id
+    with_wildcard_routes: true
+
+asset_display_assets:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Asset
+    module:               display_assets
+    prefix_path:          /display_assets
+    column:               id
+    with_wildcard_routes: true
+
+display:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Display
+    module:               display
+    prefix_path:          /display
+    column:               id
+    with_wildcard_routes: true
+
+block:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Block
+    module:               block
+    prefix_path:          /block
+    column:               id
+    with_wildcard_routes: true
+    
+section_blocks:
+  url:     /section/:id/ListBlocks/
+  class:   sfDoctrineRoute
+  options: { model: Section, type: object }
+  param:   { module: section, action: ListBlocks }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+asset_related_assets:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Asset
+    module:               related_assets
+    prefix_path:          /related_assets
+    column:               id
+    with_wildcard_routes: true
+
+todo:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Todo
+    module:               todo
+    prefix_path:          /todo
+    column:               id
+    with_wildcard_routes: true
+
+video_dropbox:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                VideoDropbox
+    module:               video_dropbox
+    prefix_path:          /video_dropbox
+    column:               id
+    with_wildcard_routes: true
+
+image_usage_imageusage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ImageUsage
+    module:               imageusage
+    prefix_path:          /imageusage
+    column:               id
+    with_wildcard_routes: true
+
+image_usage_imageUsage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ImageUsage
+    module:               imageUsage
+    prefix_path:          /imageUsage
+    column:               id
+    with_wildcard_routes: true
+
+image_usage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ImageUsage
+    module:               image_usage
+    prefix_path:          /image_usage
+    column:               id
+    with_wildcard_routes: true
+
+asset_video:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AssetVideo
+    module:               video
+    prefix_path:          /video
+    column:               id
+    with_wildcard_routes: true
+
+schedule:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Schedule
+    module:               schedule
+    prefix_path:          /schedule
+    column:               id
+    with_wildcard_routes: true
+
+asset_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AssetType
+    module:               assettype
+    prefix_path:          /assettype
+    column:               id
+    with_wildcard_routes: true
+
+asset:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Asset
+    module:               asset
+    prefix_path:          /asset
+    column:               id
+    with_wildcard_routes: true
+
+section:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Section
+    module:               section
+    prefix_path:          /section
+    column:               id
+    with_wildcard_routes: true
+
+site:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Site
+    module:               site
+    prefix_path:          /site
+    column:               id
+    with_wildcard_routes: true
+  
+category:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Category
+    module:               category
+    prefix_path:          /category
+    column:               id
+    with_wildcard_routes: true
+
+program:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Program
+    module:               program
+    prefix_path:          /program
+    column:               id
+    with_wildcard_routes: true
+
+channel:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Channel
+    module:               channel
+    prefix_path:          /channel
+    column:               id
+    with_wildcard_routes: true
+
+organization:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Organization
+    module:               organization
+    prefix_path:          /organization
+    column:               id
+    with_wildcard_routes: true
+
+
+#############
+
+
+# default rules
+homepage:
+  url:   /
+  param: { module: dashboard, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
+
+# sf_guard
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
