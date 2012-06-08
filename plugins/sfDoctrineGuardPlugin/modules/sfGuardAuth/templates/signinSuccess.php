@@ -1,4 +1,6 @@
     <?php use_helper('I18N') ?>
+    
+    <a href="https://github.com/edse/possum" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; margin-top: 40px;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
     <div class="container">
       
