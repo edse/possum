@@ -1,10 +1,10 @@
 <?php
-ini_set("upload_max_filesize", "1700M");
-ini_set("post_max_size", "1700M");
-ini_set("memory_limit", "1700M");
-ini_set("max_input_time", "3600");
-ini_set("max_execution_time", "3600");
-set_time_limit(0);
+#ini_set("upload_max_filesize", "1700M");
+#ini_set("post_max_size", "1700M");
+#ini_set("memory_limit", "1700M");
+#ini_set("max_input_time", "3600");
+#ini_set("max_execution_time", "3600");
+#set_time_limit(0);
 
 require_once dirname(__FILE__).'/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
@@ -48,7 +48,8 @@ class ProjectConfiguration extends sfProjectConfiguration
   **/
   public function configureDoctrine(Doctrine_Manager $manager)
   {
-    $manager->setAttribute(Doctrine::ATTR_QUERY_CACHE, new Doctrine_Cache_Apc());
+    //$manager->setAttribute(Doctrine::ATTR_QUERY_CACHE, new Doctrine_Cache_Apc());
+    $manager->setAttribue(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
   }
 
 }
