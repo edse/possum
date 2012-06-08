@@ -20,6 +20,16 @@
 
 <script>
 $(document).ready(function(){
+  $('#asset_title').keypress(function(){
+    $.ajax({
+      url: "<?php echo url_for('@homepage') ?>asset/getSlug",
+      data: "title="+$('#asset_title').val(),
+      success: function(data) {
+        $('#asset_slug').val(data);
+      }
+    });
+  });
+
   $('#asset_site_id').change(function(){
     $.ajax({
       url: "<?php echo url_for('@homepage') ?>site/getSections",
