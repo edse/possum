@@ -5,6 +5,7 @@
 #all:
 
 all:
+  name: Possum-CMS
   mediaextensions:
     video: [ogg,mp4,flv,wmv,mpg,avi,m4v,mov]
     audio: [mp3,wma,wav,aac]
