@@ -1,3 +1,4 @@
+    <?php use_helper('I18N') ?>
         <div class="navbar navbar-fixed-top">
           <div class="navbar-inner">
             <div class="container">
