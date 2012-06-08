@@ -17,7 +17,7 @@ default:
 
   ##javascripts:    [jquery-ui-1.8.7/jquery-1.4.4.min.js, jquery-ui-1.8.7/jquery-ui-1.8.7.custom.min.js]
   #javascripts:    [jquery-ui-1.8.7/jquery-1.4.4.min.js, jquery-1.7.2.min.js]
-  javascripts:    [/initializr/js/libs/modernizr-2.5.3-respond-1.1.0.min.js, /initializr/js/libs/jquery-1.7.2.min.js, /initializr/js/libs/jquery.validate.min.js, /initializr/js/libs/messages_ptbr.js, /initializr/js/libs/bootstrap/bootstrap.min.js, /initializr/js/script.js]
+  javascripts:    [/initializr/js/libs/modernizr-2.5.3-respond-1.1.0.min.js, /initializr/js/libs/jquery-1.7.2.min.js, /initializr/js/libs/jquery.validate.min.js, /initializr/js/libs/bootstrap/bootstrap.min.js]
 
   has_layout:     true
   layout:         layout
