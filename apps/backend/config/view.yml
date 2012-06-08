@@ -6,7 +6,7 @@ default:
     content-type: text/html
 
   metas:
-    title:        Astolfo
+    title:        Possum-CMS
     description:  Content Manager System
     keywords:     symfony, doctrine, cms
     language:     pt-br
