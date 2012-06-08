@@ -1,0 +1,8 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=possum'
+      username: root
+      password: root
+      profiler: false
