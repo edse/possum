@@ -427,5 +427,33 @@ class assetActions extends autoAssetActions
     $this->getUser()->setFlash('notice', 'Asset duplicado com sucesso.');
     $this->redirect('@asset');
   }
-  
+
+  public function executeGetSlug(sfWebRequest $request){
+    $this->setLayout(false);
+    $slug = Asset::slugify($request->getParameter('title'));
+    $exists = false;
+    $check = Doctrine_Query::create()
+      ->select('a.*')
+      ->from('Asset a')
+      ->where('a.slug = ?', $slug)
+      ->orderBy('a.slug')
+      ->fetchOne();
+    if($check){
+      $exists = true;
+      $i = 1;
+      while($check && $i <= 100){
+        $slug2 = $slug."-".$i;
+        $check = Doctrine_Query::create()
+          ->select('a.*')
+          ->from('Asset a')
+          ->where('a.slug = ?', $slug2)
+          ->orderBy('a.slug')
+          ->fetchOne();
+        $i++;
+      }
+      $slug = $slug2;
+    }
+    die($slug);
+  }
+
 }
