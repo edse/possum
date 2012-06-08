@@ -29,7 +29,7 @@ class sfWidgetAstolfoFileLinkForm extends sfWidgetForm {
     }
 
     if(!$this->getOption('is_video'))
-      $l .= "File: <a href='" . $this->getOption('path') . "/" . $value . "." . $this->getOption('extension') . "' target='_blank'>".$value."</a>";
+      $l .= "File: <a href='" . $this->getOption('path') . "/" . $value . "' target='_blank'>".$value."</a>";
 
     $r = $value ? $l : '&mdash;';
 
