@@ -20,10 +20,10 @@
 
 <script>
 $(document).ready(function(){
-  $('#asset_title').keypress(function(){
+  $('#asset_title').keyup(function(){
     $.ajax({
       url: "<?php echo url_for('@homepage') ?>asset/getSlug",
-      data: "title="+$('#asset_title').val(),
+      data: "id=<?php echo $asset->getId()?>&title="+$('#asset_title').val(),
       success: function(data) {
         $('#asset_slug').val(data);
       }

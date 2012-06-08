@@ -436,6 +436,7 @@ class assetActions extends autoAssetActions
       ->select('a.*')
       ->from('Asset a')
       ->where('a.slug = ?', $slug)
+      ->andWhere('a.id != ?', $request->getParameter('id'))
       ->orderBy('a.slug')
       ->fetchOne();
     if($check){
@@ -447,6 +448,7 @@ class assetActions extends autoAssetActions
           ->select('a.*')
           ->from('Asset a')
           ->where('a.slug = ?', $slug2)
+          ->andWhere('a.id != ?', $request->getParameter('id'))
           ->orderBy('a.slug')
           ->fetchOne();
         $i++;
