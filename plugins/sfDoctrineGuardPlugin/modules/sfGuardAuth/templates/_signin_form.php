@@ -11,16 +11,16 @@
               <form class="form-horizontal" id="signin" method="post" action="<?php echo url_for('@sf_guard_signin') ?>">
                 <fieldset>
                   <div class="control-group">
-                    <label class="control-label" for="signin_username">Email</label>
+                    <label class="control-label" for="signin_username"><?php echo __('Email', array(), 'messages') ?></label>
                     <div class="controls">
-                      <input type="text" class="input-medium" id="signin_username" name="signin[username]" placeholder="Entre com seu email" />
+                      <input type="text" class="input-medium" id="signin_username" name="signin[username]" placeholder="<?php echo __('Enter your email address', array(), 'messages') ?>" />
                       <!--<p class="help-block">Entre com seu endereço de email</p>-->
                     </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label" for="signin_password">Senha</label>
+                    <label class="control-label" for="signin_password"><?php echo __('Password', array(), 'messages') ?></label>
                     <div class="controls">
-                      <input type="password" class="input-medium" id="signin_password" name="signin[password]" placeholder="Entre com sua senha" />
+                      <input type="password" class="input-medium" id="signin_password" name="signin[password]" placeholder="<?php echo __('Enter your password', array(), 'messages') ?>" />
                       <!--<p class="help-block">Entre com sua senha</p>-->
                     </div>
                   </div>
@@ -35,8 +35,8 @@
                   </div>
                   -->
                   <div class="form-actions">
-                    <button type="submit" class="btn btn-primary" id="btn1">Entrar</button>
-                    <button id="cancel" class="btn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn1"><?php echo __('Sign In', array(), 'messages') ?></button>
+                    <button id="cancel" class="btn"><?php echo __('Cancel', array(), 'messages') ?></button>
                   </div>
                 </fieldset>
                 <?php echo $form->renderHiddenFields() ?>
