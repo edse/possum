@@ -1,11 +1,9 @@
         <hr />
         <footer>
+          <a href="https://twitter.com/emersonestrella" class="twitter-follow-button pull-right" data-show-count="false">Follow @emersonestrella</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           <p>
             <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Possum-CMS</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://possum-cms.com" property="cc:attributionName" rel="cc:attributionURL">Emerson Estrella</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
-          </p>
-          
-          <a href="https://twitter.com/emersonestrella" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @emersonestrella</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          
+          </p>          
         </footer>
       </div>
