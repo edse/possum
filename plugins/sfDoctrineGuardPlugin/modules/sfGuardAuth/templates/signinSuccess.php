@@ -23,7 +23,7 @@
           <!-- <h4>Para acessar o Astolfo, entre com o login e senha fornecidos.</h4> -->
           <br />
           <p><?php echo sfConfig::get('app_name').__(' is an open source Content Management System that allows you easily manage multiple websites at same time', array(), 'messages') ?>.</p>
-          <p>Entre com suas credênciais ou peça a criação de sua conta.</p>
+          <h2><?php echo __('Signin with the email: test and the password: test', array(), 'messages') ?></h2>
           <!-- <p><a class="btn btn-primary btn-large">Learn more »</a></p> -->
         </div>
         <?php echo get_partial('sfGuardAuth/signin_form', array('form' => $form)) ?>
