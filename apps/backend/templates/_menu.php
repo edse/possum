@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </a>
-              <a class="brand" href="<?php echo url_for('@homepage') ?>">Astolfo</a>
+              <a class="brand" href="<?php echo url_for('@homepage') ?>"><?php echo sfConfig::get('app_name')?></a>
               <div class="nav-collapse">
                 <ul class="nav">
                   <?php if(($sf_user->hasPermission('admin')) || ($sf_user->hasPermission('editor'))): ?>
