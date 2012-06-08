@@ -11,7 +11,7 @@ if(isset($_REQUEST["payload"])){
     $msg .= "\nTimestamp: ".$c->timestamp;
     $msg .= "\nMessage: ".$c->message;
   }
-  $a = exec('cd /var/frontend');
+  $a = exec('cd ..');
   $msg2 .= "\n\n".exec('git pull');
   mail('emerson.estrella@gmail.com', 'Git Pulled [Possum-cms]', $msg.$msg2);
 }
