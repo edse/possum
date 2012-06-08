@@ -1,0 +1,75 @@
+sfAntiBruteForcePlugin plugin
+=============================
+
+The `sfAntiBruteForcePlugin` helps you securing your web application against [brute force attacks](http://en.wikipedia.org/wiki/Brute_force_attack).
+
+
+Principle
+---------
+
+To prevent brute force attacks, we need to count the fail attempts for a given user. To do so, you can count the failed authentication for a given username. If the defined threshold is reached for the current day, you can forbid him to login. Or even better, you can add a CAPTCHA on the login form. Feel free to do what you prefer.
+
+
+Features
+--------
+
+The `sfAntiBruteForcePlugin` proposes a management class with 2 static methods. They allow to count authentication attempts, and to know if a user has reached his attempts threshold. Here is how to use it.
+
+This code takes place in the action that handles the login process.
+
+    [php]
+    public function executeLogin(sfWebRequest $request)
+    {
+      $this->form = new LoginForm();
+
+      if ($request->isMethod('post'))
+      {
+        $this->form->bind($request->getParameter('login'));
+
+        // retrieve the given username
+        $taintedValues = $this->form->getTaintedValues();
+
+        // check that he hasn't already reached the threshold
+        if (!sfAntiBruteForceManager::canTryAuthentication($taintedValues['username']))
+        {
+          // go away hacker!
+          $this->forward404();
+        }
+
+        if ($this->form->isValid())
+        {
+          // authenticate user and redirect
+          $this->getUser()->setAuthenticated(true);
+          $this->redirect('@homepage');
+        }
+        else
+        {
+          // on failed authentication, increase counter for this user
+          sfAntiBruteForceManager::notifyFailedAuthentication($taintedValues['username']);
+        }
+      }
+    }
+
+You can customize the number of failed authentication threshold in your `app.yml` file:
+
+    [yaml]
+    all:
+      sfAntiBruteForcePlugin:
+        threshold:        20 # 20 failed attempts per day
+
+
+Current limitations
+-------------------
+Counters are stored in files, in the cache directory. There's 1 file per user. Those files are cleaned every day. I will probably implement a way to paremeter the plugin to store the counters in a database.
+
+Attempts are counted per day. There's currently no way to paremeter the plugin to count it per hour, or anything else.
+
+
+Changelog
+---------
+
+### Trunk
+
+### 2010-12-13 | 0.1 Beta
+
+  * gregoire_m: first beta: basic functionnalities with file storage
