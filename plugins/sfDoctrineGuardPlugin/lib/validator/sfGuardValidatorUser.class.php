@@ -23,7 +23,7 @@ class sfGuardValidatorUser extends sfValidatorBase
     $this->addOption('password_field', 'password');
     $this->addOption('throw_global_error', true);
 
-    $this->setMessage('invalid', 'Email e/ou senha inválidos.');
+    $this->setMessage('invalid', 'The password you entered is incorrect.');
     
   }
 
