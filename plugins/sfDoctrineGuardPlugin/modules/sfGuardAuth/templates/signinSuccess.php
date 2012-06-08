@@ -11,7 +11,7 @@
           <h4 class="alert-heading"><?php echo __('Warning', array(), 'messages') ?>!</h4>
           <p><?php echo sfConfig::get('app_name').__(' is changing and you can help by sending your feedback', array(), 'messages') ?>.</p>
           <p>
-            <a class="btn btn-success" href="https://spreadsheets.google.com/viewform?key=ttTqfA0XBz9_hb41cLNjwiw" target="_blank"><?php echo __('Send your feedback', array(), 'messages') ?>!</a>
+            <a class="btn btn-success" href="https://docs.google.com/spreadsheet/viewform?formkey=dHZaamJPdlpCVG1LT21qb1V2YmRzRXc6MQ" target="_blank"><?php echo __('Send your feedback', array(), 'messages') ?>!</a>
           </p>
         </div>
         </div>
