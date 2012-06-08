@@ -14,78 +14,78 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>
                       <ul class="dropdown-menu">
                       <?php if($sf_user->hasPermission('admin')): ?>
-                        <li class="nav-header">Admin</li>
-                        <li><?php echo link_to('Organiza&ccedil;&otilde;es', 'organization/index') ?></li>
-                        <li><?php echo link_to('Canais', 'channel/index') ?></li>
+                        <li class="nav-header"><?php echo __('Admin', array(), 'messages') ?></li>
+                        <li><?php echo link_to(__('Organizations', array(), 'messages'), 'organization/index') ?></li>
+                        <li><?php echo link_to(__('Channels', array(), 'messages'), 'channel/index') ?></li>
                         <!-- <li class="divider"></li>
                         <li class="nav-header">Assets & Images</li> -->
-                        <li><?php echo link_to('Image Usage', 'image_usage/index') ?></li>
-                        <li><?php echo link_to('Tipos de Asset', 'assettype/index') ?></li>
+                        <li><?php echo link_to(__('Images Sizes', array(), 'messages'), 'image_usage/index') ?></li>
+                        <li><?php echo link_to(__('Assets Types', array(), 'messages'), 'assettype/index') ?></li>
                         <!-- <li class="divider"></li>
                         <li class="nav-header">Users</li> -->
-                        <li><?php echo link_to('Usu&aacute;rios', 'guard/users') ?></li>
+                        <li><?php echo link_to(__('Users', array(), 'messages'), 'guard/users') ?></li>
                         <!-- <li class="divider"></li>
                         <li class="nav-header">User logs</li> -->
-                        <li><?php echo link_to('Log', 'log/index') ?></li>
+                        <li><?php echo link_to(__('Logs', array(), 'messages'), 'log/index') ?></li>
                       <?php endif; ?>
                         <li class="divider"></li>
-                        <li class="nav-header">Editor</li>
-                        <li><?php echo link_to('Programas', 'program/index') ?></li>
-                        <li><?php echo link_to('Sites', 'site/index') ?></li>
-                        <li><?php echo link_to('Categorias', 'category/index') ?></li>
+                        <li class="nav-header"><?php echo __('Editor', array(), 'messages')?></li>
+                        <li><?php echo link_to(__('Program', array(), 'messages'), 'program/index') ?></li>
+                        <li><?php echo link_to(__('Sites', array(), 'messages'), 'site/index') ?></li>
+                        <li><?php echo link_to(__('Categories', array(), 'messages'), 'category/index') ?></li>
                         <!--<li class="divider"></li>
                         <li class="nav-header">Grade & EPG</li>-->
-                        <li><?php echo link_to('Grade', 'schedule/index') ?></li>
+                        <li><?php echo link_to(__('Schedule', array(), 'messages'), 'schedule/index') ?></li>
                         <li class="divider"></li>
-                        <li class="nav-header">Tools</li>
+                        <li class="nav-header"><?php echo __('Tools', array(), 'messages')?></li>
                         <!--<li class="divider"></li>
                         <li class="nav-header">Youtube</li>-->
-                        <li><?php echo link_to('Youtube Dropbox', 'video_dropbox/index')?></li>
+                        <li><?php echo link_to(__('Youtube Dropbox', array(), 'messages'), 'video_dropbox/index')?></li>
                         <!--<li class="divider"></li>
                         <li class="nav-header">Twitter</li>-->
-                        <li><?php echo link_to('Twitter Monitor', 'tweet_monitor/index')?></li>
+                        <li><?php echo link_to(__('Twitter Monitor', array(), 'messages'), 'tweet_monitor/index')?></li>
                         <!--<li class="divider"></li>
                         <li class="nav-header">Sony</li>-->
-                        <li><?php echo link_to('Sonny App', 'sony/index')?></li>
+                        <li><?php echo link_to(__('Sony App', array(), 'messages'), 'sony/index')?></li>
                       </ul>
                     </li>
                     <li class="divider-vertical"></li>
                   <?php endif; ?>
                   <?php if($sf_user->isAuthenticated()): ?>
                   <form class="navbar-search pull-left" action="<?php echo url_for('homepage')?>search/do" method="get">
-                    <input type="text" id="search_query" name="search_query" class="search-query span2" placeholder="Buscar Assets">
+                    <input type="text" id="search_query" name="search_query" class="search-query span2" placeholder="<?php echo __('Asset Search', array(), 'messages')?>">
                   </form>
                   <li class="divider-vertical"></li>
                   <?php endif; ?>
                 </ul>
   
                 <?php if($sf_user->isAuthenticated()): ?>
-                <a class="btn btn-success pull-left" href="<?php echo url_for('upload/index') ?>" style="margin-right: 15px;"><i class="icon-arrow-up icon-white"></i> Upload</a>
-                <a class="btn btn-primary pull-left" href="<?php echo url_for('asset/index') ?>" style="margin-right: 15px"><i class="icon-th-list icon-white"></i> Assets</a>
+                <a class="btn btn-success pull-left" href="<?php echo url_for('upload/index') ?>" style="margin-right: 15px;"><i class="icon-arrow-up icon-white"></i> <?php echo __('Upload', array(), 'messages')?></a>
+                <a class="btn btn-primary pull-left" href="<?php echo url_for('asset/index') ?>" style="margin-right: 15px"><i class="icon-th-list icon-white"></i> <?php echo __('Assets', array(), 'messages')?></a>
                 <div class="btn-group pull-left">
-                  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-plus icon-white"></i> Asset <span class="caret"></span></a>
+                  <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-plus icon-white"></i> <?php echo __('Asset', array(), 'messages')?> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><?php echo link_to('Conteúdo', 'assetnew/content'); ?></li>
-                    <li><?php echo link_to('Imagem', 'upload/index'); ?></li>
-                    <li><?php echo link_to('Áudio', 'upload/index'); ?></li>
-                    <li><?php echo link_to('Vídeo', 'upload/index'); ?></li>
-                    <li><?php echo link_to('Youtube Vídeo', 'assetnew/video'); ?></li>
+                    <li><?php echo link_to(__('Content', array(), 'messages'), 'assetnew/content'); ?></li>
+                    <li><?php echo link_to(__('Image', array(), 'messages'), 'upload/index'); ?></li>
+                    <li><?php echo link_to(__('Audio', array(), 'messages'), 'upload/index'); ?></li>
+                    <li><?php echo link_to(__('Video', array(), 'messages'), 'upload/index'); ?></li>
+                    <li><?php echo link_to(__('Youtube Video', array(), 'messages'), 'assetnew/video'); ?></li>
                     <li class="divider"></li>
-                    <li><?php echo link_to('Epsódio', 'assetnew/episode'); ?></li>
-                    <li><?php echo link_to('Playlist Áudio', 'assetnew/podcast'); ?></li>
-                    <li><?php echo link_to('Playlist Vídeo', 'assetnew/playlist'); ?></li>
-                    <li><?php echo link_to('Álbum de Imagens', 'assetnew/gallery'); ?></li>
+                    <li><?php echo link_to(__('Epsode', array(), 'messages'), 'assetnew/episode'); ?></li>
+                    <li><?php echo link_to(__('Podcast', array(), 'messages'), 'assetnew/podcast'); ?></li>
+                    <li><?php echo link_to(__('Playlist', array(), 'messages'), 'assetnew/playlist'); ?></li>
+                    <li><?php echo link_to(__('Album', array(), 'messages'), 'assetnew/gallery'); ?></li>
                     <li class="divider"></li>
-                    <li><?php echo link_to('Questionário', 'assetnew/questionnaire'); ?></li>
-                    <li><?php echo link_to('Pergunta', 'assetnew/question'); ?></li>
-                    <li><?php echo link_to('Resposta', 'assetnew/answer'); ?></li>
+                    <li><?php echo link_to(__('Questionnaire', array(), 'messages'), 'assetnew/questionnaire'); ?></li>
+                    <li><?php echo link_to(__('Question', array(), 'messages'), 'assetnew/question'); ?></li>
+                    <li><?php echo link_to(__('Answer', array(), 'messages'), 'assetnew/answer'); ?></li>
                     <li class="divider"></li>
-                    <li><?php echo link_to('Pessoa', 'assetnew/people'); ?></li>
+                    <li><?php echo link_to(__('Person', array(), 'messages'), 'assetnew/people'); ?></li>
                     <li class="divider"></li>
-                    <li><?php echo link_to('Transmissão', 'assetnew/broadcast'); ?></li>
+                    <li><?php echo link_to(__('Broadcast', array(), 'messages'), 'assetnew/broadcast'); ?></li>
                   </ul>
                 </div>
-                <a class="btn btn-danger pull-left" href="<?php echo url_for('site/index') ?>" style="margin-left: 15px"><i class="icon-folder-open icon-white"></i> Sites</a>
+                <a class="btn btn-danger pull-left" href="<?php echo url_for('site/index') ?>" style="margin-left: 15px"><i class="icon-folder-open icon-white"></i> <?php echo __('Sites', array(), 'messages')?></a>
 
                 <div class="btn-group pull-right">
                   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -93,10 +93,10 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo url_for(url_for('@homepage').'guard/users/'.$sf_user->getGuardUser()->getId().'/edit') ?>">Profile</a></li>
+                    <li><a href="<?php echo url_for(url_for('@homepage').'guard/users/'.$sf_user->getGuardUser()->getId().'/edit') ?>"><?php echo __('Profile', array(), 'messages')?></a></li>
                     <li class="divider"></li>
-                    <li><?php echo link_to('To-do', 'todo/index'); ?></li>
-                    <li><?php echo link_to('Sign Out', 'logout/index'); ?></li>
+                    <li><?php echo link_to(__('To-do', array(), 'messages'), 'todo/index'); ?></li>
+                    <li><?php echo link_to(__('Sign-Out', array(), 'messages'), 'logout/index'); ?></li>
                   </ul>
                 </div>
                 <?php endif; ?>
