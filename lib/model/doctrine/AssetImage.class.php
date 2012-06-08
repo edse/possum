@@ -78,7 +78,26 @@ class AssetImage extends BaseAssetImage
         $this->setHeight(imagesy($image_resource));
         $this->setExtension($theFileExtension);
 		$this->save();
-          
+
+
+    $image_path = $uploadDir."/full";
+    if(!is_dir($image_path))
+      mkdir($image_path, 0777);
+    $image_path .= "/".$theFileWithoutExtension.".jpg";
+    if($image_resource) {
+      $width = imagesx($image_resource);
+      $height = imagesy($image_resource);
+      $finalWidth = $width;
+      $finalHeight = $height;
+      $newImage = imagecreatetruecolor($finalWidth, $finalHeight);
+      if (!imagecopyresampled($newImage, $image_resource, 0, 0, 0, 0, $finalWidth, $finalHeight, $width, $height)) {
+          throw new Exception(sprintf('Failed resizing image'));
+      }
+    }
+    imagejpeg($newImage, $image_path, "100");
+    imagedestroy($newImage);
+    
+    
         //Convert image to all imageusage sizes
         $imageusages = Doctrine_Core::getTable('ImageUsage')->findAll();
         foreach($imageusages as $imageusage) {

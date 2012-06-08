@@ -22,7 +22,7 @@ generator:
           _delete:      ~
         batch_actions:
           save:           ~
-        #max_per_page:     100
+        max_per_page:     10
       filter:
         display:          [title, asset_type_id, site_id]
       form:    ~
