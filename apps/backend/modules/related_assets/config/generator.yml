@@ -16,7 +16,7 @@ generator:
       fields:  ~
       list:
         title:            ""
-        display:          [id, AssetType, Site, thumbnail, title]
+        display:          [title, AssetType, Site, thumbnail]
         object_actions:
           _edit:        ~
           _delete:      ~

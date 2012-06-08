@@ -127,13 +127,17 @@ class related_assetsActions extends autoRelated_assetsActions
   {
     $pager = $this->configuration->getPager('RelatedAsset');
     $pager->setMaxPerPage(250);
-    $pager->setQuery($this->buildQuery());
+    $pager->setQuery(Doctrine_Query::create()
+      ->select('a.*')
+      ->from('Asset a')
+      ->where('a.is_active != ?', '-1')
+      ->orderBy('a.id desc'));
     $pager->setPage(1);
     $pager->init();
 
     return $pager;
   }
-  
+
   protected function getPager()
   {
     $pager = $this->configuration->getPager('RelatedAsset');

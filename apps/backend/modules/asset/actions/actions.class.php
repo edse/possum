@@ -188,19 +188,19 @@ class assetActions extends autoAssetActions
 
     /*
     if(isset($form['AssetImage'])){
-		  $t = $form['AssetImage']->getValue('original_file');
+      $t = $form['AssetImage']->getValue('original_file');
       die("HELLO1!");
-		  if($t['original_file']){
-			 $form->getObject()->AssetImage->convertAndResize();
-  		}
-	  }
+      if($t['original_file']){
+       $form->getObject()->AssetImage->convertAndResize();
+      }
+    }
     
-  	if(isset($form['AssetAudio'])){
-		  $t = $form['AssetAudio']->getValue('original_file');
+    if(isset($form['AssetAudio'])){
+      $t = $form['AssetAudio']->getValue('original_file');
       die("HELLO2!");
-		  if($t['original_file']){
-			 $form->getObject()->AssetAudio->convert();
-  		}
+      if($t['original_file']){
+       $form->getObject()->AssetAudio->convert();
+      }
     }
     */
 
@@ -210,31 +210,31 @@ class assetActions extends autoAssetActions
       $notice = $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.';
       
       if(!$form->getObject()->isNew()){
-      	// Update Todos
+        // Update Todos
         $todos = Doctrine::getTable('Todo')->findByUserIdAndAssetIdAndStatus($this->getUser()->getGuardUser()->getId(), $form->getObject()->getId(), 'Pendding');
-    		if(count($todos)>0){
-	        foreach($todos as $todo){
-	          $todo->status = 'Complete';
-	          $todo->save();
-	        }
+        if(count($todos)>0){
+          foreach($todos as $todo){
+            $todo->status = 'Complete';
+            $todo->save();
+          }
         }
 
-      	// Update Dropbox
-		if($form->getObject()->AssetType->getSlug() == "video"){
-			if($form->getObject()->AssetVideo->getYoutubeId() != ""){
-				$dropbox = Doctrine::getTable('VideoDropbox')->findByAssetVideoIdAndStatus($form->getObject()->AssetVideo->getId(), 'Pendding');
-				if(count($dropbox)>0){
-					foreach($dropbox as $d){
-						$d->delete();
-					}
-				}
-				$dropbox = new VideoDropbox();
-				$dropbox->setAssetVideoId($form->getObject()->AssetVideo->getId());
-				$dropbox->setAction('Update');
-				$dropbox->setStatus('Pendding');
-				$dropbox->save();
-			}else{
-			  if($form->getObject()->AssetVideo->getId() > 0){
+        // Update Dropbox
+    if($form->getObject()->AssetType->getSlug() == "video"){
+      if($form->getObject()->AssetVideo->getYoutubeId() != ""){
+        $dropbox = Doctrine::getTable('VideoDropbox')->findByAssetVideoIdAndStatus($form->getObject()->AssetVideo->getId(), 'Pendding');
+        if(count($dropbox)>0){
+          foreach($dropbox as $d){
+            $d->delete();
+          }
+        }
+        $dropbox = new VideoDropbox();
+        $dropbox->setAssetVideoId($form->getObject()->AssetVideo->getId());
+        $dropbox->setAction('Update');
+        $dropbox->setStatus('Pendding');
+        $dropbox->save();
+      }else{
+        if($form->getObject()->AssetVideo->getId() > 0){
           $dropbox = Doctrine::getTable('VideoDropbox')->findByAssetVideoIdAndActionAndStatus($form->getObject()->AssetVideo->getId(), 'Insert', 'Pendding');
           if(count($dropbox)<=0){
             $dropbox = new VideoDropbox();
@@ -243,9 +243,9 @@ class assetActions extends autoAssetActions
             $dropbox->setStatus('Pendding');
             $dropbox->save();
           }
-			  }
-			}
-		}
+        }
+      }
+    }
     elseif($form->getObject()->AssetType->getSlug() == "video-gallery"){
       if($form->getObject()->AssetVideoGallery->getYoutubeId() != ""){
         $dropbox = Doctrine::getTable('VideoDropbox')->findByAssetVideoGalleryIdAndStatus($form->getObject()->AssetVideoGallery->getId(), 'Pendding');
@@ -286,16 +286,16 @@ class assetActions extends autoAssetActions
 
       // NEW: deal with tags
       if ($form->getValue('remove_tags' )) {
-		foreach (preg_split('/\s*,\s*/' , $form->getValue('remove_tags' )) as $tag) {
-		  $form->getObject()->removeTag($tag);
-		}
+    foreach (preg_split('/\s*,\s*/' , $form->getValue('remove_tags' )) as $tag) {
+      $form->getObject()->removeTag($tag);
+    }
       }
       if ($form->getValue('new_tags' )) {
-		foreach (preg_split('/\s*,\s*/' , $form->getValue('new_tags' )) as $tag) {
+    foreach (preg_split('/\s*,\s*/' , $form->getValue('new_tags' )) as $tag) {
           // sorry, it would be better to not hard-code this string
-	  	  if ($tag == 'Add tags with commas' ) continue;
-	  	  $form->getObject()->addTag($tag);
-		}
+        if ($tag == 'Add tags with commas' ) continue;
+        $form->getObject()->addTag($tag);
+    }
       }
 
       try {

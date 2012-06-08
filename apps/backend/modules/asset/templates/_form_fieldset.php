@@ -142,7 +142,7 @@
         <div class="content">
           <div id="sf_fieldset_asset_relationships"></div>
           <ul class="sf_admin_actions" style="margin: 15px 0 0 35px;">
-            <li class="sf_admin_action_new"><?php echo link_to('New', 'related_assets/index?iframe=1&asset_id='.$asset->getId()); ?></li>
+            <li class="sf_admin_action_new"><?php echo link_to('New', 'related_assets/index?iframe=1&asset_id='.$asset->getId().'&sort=id&sort_type=desc'); ?></li>
           </ul>
           <?php $relatedAssets = Doctrine::getTable('RelatedAsset')->findByParentAssetId($form->getObject()->getId()); ?>
           <br />
@@ -159,8 +159,8 @@
               'type'                : 'iframe',
               'centerOnScroll'      : true,
               'showCloseButton'     : true,
-              'width'               : 900,
-              'height'              : 600
+              'width'               : 970,
+              'height'              : 680
             });
           });
           </script>
