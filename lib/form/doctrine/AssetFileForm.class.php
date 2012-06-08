@@ -13,6 +13,6 @@ class AssetFileForm extends BaseAssetFileForm
   public function configure()
   {
     unset($this['asset_id']);
-    $this->widgetSchema['file'] = new sfWidgetAstolfoFileLinkForm(array('path'=>'http://midia.cmais.com.br/assets/file/original', 'extension'=>$this->getObject()->extension, 'hidden_name'=>'asset[AssetFile][file]', 'hidden_id'=>'asset_AssetFile_file'));
+    $this->widgetSchema['file'] = new sfWidgetAstolfoFileLinkForm(array('path'=>'http://possum-cms.com/uploads/assets/file/original', 'extension'=>$this->getObject()->extension, 'hidden_name'=>'asset[AssetFile][file]', 'hidden_id'=>'asset_AssetFile_file'));
   }
 }

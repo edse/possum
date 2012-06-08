@@ -44,7 +44,7 @@ class BasesfGuardAuthActions extends sfActions
         // go away hacker!
         //$this->forward404();
         //return sfView::NONE;
-        header("Location: http://cmais.com.br");
+        header("Location: http://possum-cms.com");
         die();
 
       }
