@@ -1,8 +1,22 @@
 <?php use_helper('I18N', 'Date') ?>
 <?php include_partial('asset/assets') ?>
+
+<?php if($asset->AssetType->getSlug()=="image"):?>
+<button class="btn btn-large btn-primary pull-right" type="button" id="crop" href="<?php echo url_for('@homepage') ?>imagecrop/<?php echo $asset->getId() ?>">
+  <i class="icon-picture icon-white"></i> <?php echo __('Crop Image', array(), 'messages') ?>
+</button>
+<script>
+$(document).ready(function(){
+  $("#crop").click(function(){
+    self.location.href= $(this).attr("href");
+  });
+});
+</script>
+<?php endif;?>
+
 <div id="sf_admin_container">
   <h1><?php echo __('Edit Asset', array(), 'messages') ?><?php if($asset->AssetType->getSlug()=="content" && $asset->AssetContent->getContent()):?><input type="button" value="Duplicar Asset" name="Duplicar Asset" style="float: right;" onclick="self.location.href='<?php echo url_for("homepage")?>asset/<?php echo $asset->getId()?>/duplicate';" /><?php endif;?></h1>
-
+    
   <?php include_partial('asset/flashes') ?>
 
   <div id="sf_admin_header">
