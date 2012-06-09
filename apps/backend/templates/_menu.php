@@ -72,7 +72,7 @@
                     <li><?php echo link_to(__('Video', array(), 'messages'), 'upload/index'); ?></li>
                     <li><?php echo link_to(__('Youtube Video', array(), 'messages'), 'assetnew/video'); ?></li>
                     <li class="divider"></li>
-                    <li><?php echo link_to(__('Epsode', array(), 'messages'), 'assetnew/episode'); ?></li>
+                    <li><?php echo link_to(__('Episode', array(), 'messages'), 'assetnew/episode'); ?></li>
                     <li><?php echo link_to(__('Podcast', array(), 'messages'), 'assetnew/podcast'); ?></li>
                     <li><?php echo link_to(__('Playlist', array(), 'messages'), 'assetnew/playlist'); ?></li>
                     <li><?php echo link_to(__('Album', array(), 'messages'), 'assetnew/gallery'); ?></li>

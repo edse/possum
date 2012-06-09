@@ -19,7 +19,7 @@ class BasesfGuardAuthActions extends sfActions
 {
   public function executeSignin($request)
   {
-    
+    $this->getUser()->setCulture('en_US');
     $user = $this->getUser();
     if ($user->isAuthenticated())
     {
