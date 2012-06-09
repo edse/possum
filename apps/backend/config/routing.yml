@@ -1,3 +1,7 @@
+imagecrop:
+  url: /imagecrop/:id
+  param: { module: imagecrop, action: crop }
+
 new_asset:
   url:     /asset-new/:type/
   class:   sfDoctrineRoute

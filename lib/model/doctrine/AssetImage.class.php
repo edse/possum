@@ -13,11 +13,11 @@
 class AssetImage extends BaseAssetImage
 {
 
-	public function postUpdate($values)
-	{
-		//clear cache
-		@exec("rm /var/frontend/web/cache/".str_replace("http://", "", $this->Asset->retriveUrl2()));
-	}
+  public function postUpdate($values)
+  {
+    //clear cache
+    @exec("rm /var/frontend/web/cache/".str_replace("http://", "", $this->Asset->retriveUrl2()));
+  }
   
   public function getImage($s=3){
     //return "<img src=\'http://midia.cmais.com.br/assets/image/image-".$s."-b/".$this->getFile().".jpg\' title=\'".$this->Asset->getTitle()."\' alt=\'".$this->Asset->getTitle()."\' style=\'float: left; padding-right: 15px; padding-bottom: 10px\' />";
@@ -36,10 +36,30 @@ class AssetImage extends BaseAssetImage
   }
   
   public function getImage2($s=3){
-  	$tit = str_replace("'","&#146;",$this->Asset->getTitle());
+    $tit = str_replace("'","&#146;",$this->Asset->getTitle());
     return "<img src=\'http://midia.cmais.com.br/assets/image/image-".$s."-b/".$this->getFile().".jpg\' title=\'".$tit."\' alt=\'".$tit."\' style=\'float: left; padding-right: 15px; padding-bottom: 5px\' />";
   }
-  
+
+  public function getJPGFull(){
+    if($this->getFile()){
+      if(is_file(sfConfig::get('sf_upload_dir')."/assets/image/full/".$this->getFile().".jpg"))
+        return sfConfig::get('sf_upload_dir')."/assets/image/full/".$this->getFile().".jpg";
+      else
+        return sfConfig::get('sf_upload_dir')."/assets/image/default/".$this->getFile().".jpg";
+    }
+    return null;
+  }
+
+  public function getJPG(){
+    if($this->getFile()){
+      if(is_file(sfConfig::get('sf_upload_dir')."/assets/image/full/".$this->getFile().".jpg"))
+        return "/uploads/assets/image/full/".$this->getFile().".jpg";
+      else
+        return "/uploads/assets/image/default/".$this->getFile().".jpg";
+    }
+    return null;
+  }
+
   public function formatBytes($bytes) {
      if ($bytes < 1024) return $bytes.' B';
      elseif ($bytes < 1048576) return round($bytes / 1024, 2).' KB';
@@ -50,34 +70,35 @@ class AssetImage extends BaseAssetImage
 
   public function convertAndResize() {
     if($this->getOriginalFile()){
-		$uploadDir = sfConfig::get('sf_upload_dir').'/assets/image';
-		$uploadDirOriginal = sfConfig::get('sf_upload_dir').'/assets/image/original';
-		if(!is_dir($uploadDir))
-			mkdir($uploadDir, 0777);
-		if(!is_dir($uploadDirOriginal))
-        	mkdir($uploadDirOriginal, 0777);
+    $uploadDir = sfConfig::get('sf_upload_dir').'/assets/image';
+    $uploadDirOriginal = sfConfig::get('sf_upload_dir').'/assets/image/original';
+    if(!is_dir($uploadDir))
+      mkdir($uploadDir, 0777);
+    if(!is_dir($uploadDirOriginal))
+          mkdir($uploadDirOriginal, 0777);
 
         $theFileName = $this->getOriginalFile();
         $theFileExtension = @strtolower(@end(@explode('.', $theFileName)));
         $theFileWithoutExtension = @current(@explode('.'.$theFileExtension, $theFileName));
 
-		if(($theFileExtension == 'jpg')||($theFileExtension == 'jpeg')) {
-			$image_resource = imagecreatefromjpeg("$uploadDirOriginal/$theFileName");
-		} elseif($theFileExtension == 'png') {
-			$image_resource = imagecreatefrompng("$uploadDirOriginal/$theFileName");
-		} elseif($theFileExtension == 'gif') {
-			$image_resource = imagecreatefromgif("$uploadDirOriginal/$theFileName");
-		} elseif($theFileExtension == 'bmp') {
-			$image_resource = imagecreatefrombmp("$uploadDirOriginal/$theFileName");
-		}
- 		
-		$this->setFile($theFileWithoutExtension);
-		$this->setOriginalFile($theFileName);
+    if(($theFileExtension == 'jpg')||($theFileExtension == 'jpeg')) {
+      $image_resource = imagecreatefromjpeg("$uploadDirOriginal/$theFileName");
+    } elseif($theFileExtension == 'png') {
+      $image_resource = imagecreatefrompng("$uploadDirOriginal/$theFileName");
+    } elseif($theFileExtension == 'gif') {
+      $image_resource = imagecreatefromgif("$uploadDirOriginal/$theFileName");
+    } elseif($theFileExtension == 'bmp') {
+      $image_resource = imagecreatefrombmp("$uploadDirOriginal/$theFileName");
+    }
+    
+    $this->setFile($theFileWithoutExtension);
+    $this->setOriginalFile($theFileName);
         $this->setOriginalFileSize($this->formatBytes(filesize("$uploadDirOriginal/$theFileName")));
         $this->setWidth(imagesx($image_resource));
         $this->setHeight(imagesy($image_resource));
         $this->setExtension($theFileExtension);
-		$this->save();
+    $this->save();
+
 
 
     $image_path = $uploadDir."/full";
@@ -96,63 +117,64 @@ class AssetImage extends BaseAssetImage
     }
     imagejpeg($newImage, $image_path, "100");
     imagedestroy($newImage);
-    
-    
+
+
+          
         //Convert image to all imageusage sizes
         $imageusages = Doctrine_Core::getTable('ImageUsage')->findAll();
         foreach($imageusages as $imageusage) {
-			$image_path = $uploadDir."/".$imageusage->slug;
+      $image_path = $uploadDir."/".$imageusage->slug;
             if(!is_dir($image_path))
-            	mkdir($image_path, 0777);
-			$image_path .= "/".$theFileWithoutExtension.".jpg";
-			if($image_resource) {
-				$width = imagesx($image_resource);
-				$height = imagesy($image_resource);
-				$scale = min($imageusage->width / $width, $imageusage->height / $height);
-				$finalWidth = floor($scale * $width);
-				$finalHeight = floor($scale * $height);
-               	if($imageusage->background) {
-               		$newImage = imagecreatetruecolor($imageusage->width, $imageusage->height);
-                   	$rgb = $imageusage->hex2RGB();                
-                   	if(count($rgb)>2) {
-                      	$background = imagecolorallocate($newImage, $rgb[0], $rgb[1], $rgb[2]);
-                   	} else {
-                       	$background = 0;
-                   	}
-                   	if(!imagefilledrectangle($newImage, 0, 0, $imageusage->width - 1, $imageusage->height - 1, $background)) {
-                   		throw new Exception(sprintf('Failed creating background'));
-                   	}
-					if(!imagecopyresampled($newImage, $image_resource, ($imageusage->width - $finalWidth) / 2, ($imageusage->height - $finalHeight) / 2, 0, 0, $finalWidth, $finalHeight, $width, $height)) {
-                   		throw new Exception(sprintf('Failed resizing image'));
-                   	}
-               	}else {
-               		$newImage = imagecreatetruecolor($finalWidth, $finalHeight);
-	                if (!imagecopyresampled($newImage, $image_resource, 0, 0, 0, 0, $finalWidth, $finalHeight, $width, $height)) {
-                   		throw new Exception(sprintf('Failed resizing image'));
-	                }
-               	}
+              mkdir($image_path, 0777);
+      $image_path .= "/".$theFileWithoutExtension.".jpg";
+      if($image_resource) {
+        $width = imagesx($image_resource);
+        $height = imagesy($image_resource);
+        $scale = min($imageusage->width / $width, $imageusage->height / $height);
+        $finalWidth = floor($scale * $width);
+        $finalHeight = floor($scale * $height);
+                if($imageusage->background) {
+                  $newImage = imagecreatetruecolor($imageusage->width, $imageusage->height);
+                    $rgb = $imageusage->hex2RGB();                
+                    if(count($rgb)>2) {
+                        $background = imagecolorallocate($newImage, $rgb[0], $rgb[1], $rgb[2]);
+                    } else {
+                        $background = 0;
+                    }
+                    if(!imagefilledrectangle($newImage, 0, 0, $imageusage->width - 1, $imageusage->height - 1, $background)) {
+                      throw new Exception(sprintf('Failed creating background'));
+                    }
+          if(!imagecopyresampled($newImage, $image_resource, ($imageusage->width - $finalWidth) / 2, ($imageusage->height - $finalHeight) / 2, 0, 0, $finalWidth, $finalHeight, $width, $height)) {
+                      throw new Exception(sprintf('Failed resizing image'));
+                    }
+                }else {
+                  $newImage = imagecreatetruecolor($finalWidth, $finalHeight);
+                  if (!imagecopyresampled($newImage, $image_resource, 0, 0, 0, 0, $finalWidth, $finalHeight, $width, $height)) {
+                      throw new Exception(sprintf('Failed resizing image'));
+                  }
+                }
 
-               	if(($theFileExtension == 'jpg')||($theFileExtension == 'jpeg')) {
-                   	imagejpeg($newImage, $image_path, "100");
-               	} elseif($theFileExtension == 'png') {
-                  	imagepng($newImage, $image_path);
-               	} elseif($theFileExtension == 'gif') {
-                  	imagegif($newImage, $image_path);
-               	} elseif($theFileExtension == 'bmp') {
-                  	imagewbmp($newImage, $image_path);
-               	}
+                if(($theFileExtension == 'jpg')||($theFileExtension == 'jpeg')) {
+                    imagejpeg($newImage, $image_path, "100");
+                } elseif($theFileExtension == 'png') {
+                    imagepng($newImage, $image_path);
+                } elseif($theFileExtension == 'gif') {
+                    imagegif($newImage, $image_path);
+                } elseif($theFileExtension == 'bmp') {
+                    imagewbmp($newImage, $image_path);
+                }
 
-               	imagedestroy($newImage);
+                imagedestroy($newImage);
       
-           	}
+            }
 
-		  }
+      }
 
-       	  imagedestroy($image_resource);
+          imagedestroy($image_resource);
 
-       	  }else{
-       	  }
+          }else{
+          }
     
-		}
+    }
 
 }
