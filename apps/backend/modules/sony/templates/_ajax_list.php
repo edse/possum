@@ -2,7 +2,7 @@
   <?php if (!$pager->getNbResults()): ?>
     <p><?php echo __('No result', array(), 'sf_admin') ?></p>
   <?php else: ?>
-    <table cellspacing="0">
+    <table class="table table-striped table-condensed">
       <thead>
         <tr>
           <th class="sf_admin_text sf_admin_list_th_id"> </th>

@@ -19,7 +19,8 @@ abstract class sfModelGeneratorHelper
 
   public function linkToEdit($object, $params)
   {
-    return '<li class="sf_admin_action_edit">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('edit'), $object).'</li>';
+    return '<a class="btn btn-primary" href="'.url_for($this->getUrlForAction('edit'), $object).'"><i class="icon-file icon-white"></i> Edit</a>';
+    //return '<li class="sf_admin_action_edit">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('edit'), $object).'</li>';
   }
 
   public function linkToDelete($object, $params)
@@ -28,8 +29,9 @@ abstract class sfModelGeneratorHelper
     {
       return '';
     }
-
-    return '<li class="sf_admin_action_delete">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('delete'), $object, array('method' => 'delete', 'confirm' => !empty($params['confirm']) ? __($params['confirm'], array(), 'sf_admin') : $params['confirm'])).'</li>';
+    $aux2 = explode(">Delete</a>", link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('delete'), $object, array('method' => 'delete', 'confirm' => !empty($params['confirm']) ? __($params['confirm'], array(), 'sf_admin') : $params['confirm'])));
+    return $aux2[0].' class="btn btn-mini btn-danger"><i class="icon-trash icon-white"></i> Delete</a>';
+    //return '<li class="sf_admin_action_delete">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('delete'), $object, array('method' => 'delete', 'confirm' => !empty($params['confirm']) ? __($params['confirm'], array(), 'sf_admin') : $params['confirm'])).'</li>';
   }
 
   public function linkToList($params)

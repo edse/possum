@@ -20,10 +20,12 @@
       <div id="sf_admin_content">
         <form action="<?php echo url_for('schedule_collection', array('action' => 'batch')) ?>" method="post">
         <?php include_partial('schedule/list', array('pager' => $pager, 'sort' => $sort, 'helper' => $helper, 'date' => $date)) ?>
+        <?php /*
         <ul class="sf_admin_actions">
           <?php //include_partial('schedule/list_batch_actions', array('helper' => $helper)) ?>
-          <?php include_partial('schedule/list_actions', array('helper' => $helper)) ?>
+          <?php //include_partial('schedule/list_actions', array('helper' => $helper)) ?>
         </ul>
+        */ ?>
         </form>
       </div>
     

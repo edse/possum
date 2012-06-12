@@ -2,7 +2,7 @@
   <?php if (!$pager->getNbResults()): ?>
     <p><?php echo __('No result', array(), 'sf_admin') ?></p>
   <?php else: ?>
-    <table cellspacing="0" width="100%">
+    <table class="table table-striped table-condensed">
       <thead>
         <tr>
           <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
@@ -17,10 +17,13 @@
               <?php include_partial('asset/pagination', array('pager' => $pager)) ?>
             <?php endif; ?>
 
-            <?php echo format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults(), 'sf_admin') ?>
+            <?php /* echo format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults(), 'sf_admin') ?>
             <?php if ($pager->haveToPaginate()): ?>
               <?php echo __('(page %%page%%/%%nb_pages%%)', array('%%page%%' => $pager->getPage(), '%%nb_pages%%' => $pager->getLastPage()), 'sf_admin') ?>
-            <?php endif; ?>
+            <?php endif; */ ?>
+            
+            <?php include_partial('asset/list_batch_actions', array('helper' => $helper)) ?>
+
           </th>
         </tr>
       </tfoot>
@@ -34,7 +37,9 @@
         <?php endforeach; ?>
       </tbody>
     </table>
+
   <?php endif; ?>
+    
 </div>
 <script type="text/javascript">
 /* <![CDATA[ */

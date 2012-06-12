@@ -7,7 +7,7 @@
 
 <div class="row-fluid">
 
-  <?php include_partial('asset/assets') ?>
+  <?php //include_partial('asset/assets') ?>
 
   <div class="span9">
     
@@ -25,10 +25,12 @@
           <?php include_partial('asset/list_actions', array('helper' => $helper)) ?>
         </ul>*/ ?>
         <?php include_partial('asset/list', array('pager' => $pager, 'sort' => $sort, 'helper' => $helper)) ?>
+
+        <?php /*
         <ul class="sf_admin_actions">
-          <?php include_partial('asset/list_batch_actions', array('helper' => $helper)) ?>
           <?php //include_partial('asset/list_actions', array('helper' => $helper)) ?>
         </ul>
+         */ ?>
         </form>
       </div>
     

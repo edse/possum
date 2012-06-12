@@ -5,16 +5,15 @@
     <table class="table table-striped table-condensed">
       <thead>
         <tr>
-          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
-          <?php include_partial('search/list_th_tabular', array('sort' => $sort)) ?>
-          <!-- <th id="sf_admin_list_th_actions"><?php echo __('Actions', array(), 'sf_admin') ?></th> -->
+          <?php include_partial('site/list_th_tabular', array('sort' => $sort)) ?>
+          <th id="sf_admin_list_th_actions"><?php echo __('Actions', array(), 'sf_admin') ?></th>
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <th colspan="17">
+          <th colspan="6">
             <?php if ($pager->haveToPaginate()): ?>
-              <?php include_partial('search/pagination', array('pager' => $pager)) ?>
+              <?php include_partial('site/pagination', array('pager' => $pager)) ?>
             <?php endif; ?>
 
             <?php echo format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults(), 'sf_admin') ?>
@@ -25,11 +24,10 @@
         </tr>
       </tfoot>
       <tbody>
-        <?php foreach ($pager->getResults() as $i => $asset): $odd = fmod(++$i, 2) ? 'odd' : 'even' ?>
+        <?php foreach ($pager->getResults() as $i => $site): $odd = fmod(++$i, 2) ? 'odd' : 'even' ?>
           <tr class="sf_admin_row <?php echo $odd ?>">
-            <?php include_partial('search/list_td_batch_actions', array('asset' => $asset, 'helper' => $helper)) ?>
-            <?php include_partial('search/list_td_tabular', array('asset' => $asset)) ?>
-            <?php // include_partial('search/list_td_actions', array('asset' => $asset, 'helper' => $helper)) ?>
+            <?php include_partial('site/list_td_tabular', array('site' => $site)) ?>
+            <?php include_partial('site/list_td_actions', array('site' => $site, 'helper' => $helper)) ?>
           </tr>
         <?php endforeach; ?>
       </tbody>
