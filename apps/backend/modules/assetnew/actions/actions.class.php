@@ -42,15 +42,53 @@ class assetnewActions extends sfActions
     $this->redirect('asset/edit?id='.$asset->id);
   }
 
-  public function executeVideo(sfWebRequest $request)
+  public function executeYoutubevideo(sfWebRequest $request)
   {
-    $asset = new Asset();
-    $asset->asset_type_id = 6;
-    $asset->title = "Título";
-    $asset->description = "Descrição";
-    $asset->user_id = $this->getUser()->getGuardUser()->getId();
-    $asset->save();
-    $this->redirect('asset/edit?id='.$asset->id);
+    if($request->getParameter('url')!=""){
+      
+      $info = file_get_contents("http://gdata.youtube.com/feeds/api/videos/".$request->getParameter('url'));
+      //$aux = utf8_decode(urldecode($info));
+      $aux = $info;
+      
+      $aux1 = explode("<title type='text'>", $aux);
+      $aux2 = explode('</title>', $aux1[1]);
+      $title = $aux2[0];
+      $aux1 = explode("<media:description type='plain'>", $aux);
+      $aux2 = explode('</media:description>', $aux1[1]);
+      $description = $aux2[0];
+      $aux1 = explode("duration='", $aux);
+      $aux2 = explode("'", $aux1[1]);
+      $duration = $aux2[0];
+      if(intval($duration)>0){
+        // extract hours
+        $hours = floor($duration / (60 * 60));
+        // extract minutes
+        $divisor_for_minutes = $duration % (60 * 60);
+        $minutes = floor($divisor_for_minutes / 60);
+        // extract the remaining seconds
+        $divisor_for_seconds = $divisor_for_minutes % 60;
+        $seconds = ceil($divisor_for_seconds);
+        if($hours < 10) $hours = "0".$hours;
+        if($minutes < 10) $minutes = "0".$minutes;
+        if($seconds < 10) $seconds = "0".$seconds;
+      }
+      
+      $this->asset = new Asset();
+      $this->asset->asset_type_id = 6;
+      $this->asset->title = $title;
+      $this->asset->description = $description;
+      $this->asset->user_id = $this->getUser()->getGuardUser()->getId();
+      $this->asset->save();
+      
+      $av = new AssetVideo();
+      $av->asset_id = $this->asset->id;
+      $av->youtube_id = $request->getParameter('url');
+      $av->duration = $hours.":".$minutes.":".$seconds;
+      $av->save();
+      $this->redirect('asset/edit?id='.$this->asset->id);
+      
+    }
+
   }
 
   public function executeAudio(sfWebRequest $request)
@@ -116,6 +154,11 @@ class assetnewActions extends sfActions
     $asset->description = "Descrição";
     $asset->user_id = $this->getUser()->getGuardUser()->getId();
     $asset->save();
+    
+    $av = new AssetQuestionnaire();
+    $av->asset_id = $asset->id;
+    $av->name = "Título";
+    $av->save();
     $this->redirect('asset/edit?id='.$asset->id);
   }
 
@@ -127,6 +170,11 @@ class assetnewActions extends sfActions
     $asset->description = "Descrição";
     $asset->user_id = $this->getUser()->getGuardUser()->getId();
     $asset->save();
+    
+    $av = new AssetQuestion();
+    $av->asset_id = $asset->id;
+    $av->question = "Título";
+    $av->save();
     $this->redirect('asset/edit?id='.$asset->id);
   }
 
